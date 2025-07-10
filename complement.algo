@@ -1,0 +1,51 @@
+// PROBLEM 1 (ADDITION OF COMPLEMENT OF TWO SETS)
+ALGORITHM complement
+VAR
+    set1 : ARRAY_OF INTEGER[4];
+    set2 : ARRAY_OF INTEGER[5];
+    i : INTEGER:=0
+    j : INTEGER
+    sum: INTEGER := 0
+    comp = true
+
+    
+BEGIN
+    read(set1)
+    read(set2)
+
+    // first a while loop that loops through the values of set1
+    WHILE (set1[i] < set1.length) DO
+    // a nested loop that checks if the value is repeated in the set2
+        FOR j FROM 0 TO set2.length-1 STEP 1 DO
+            IF (set1[i] = set2[j]) THEN
+                comp = false
+                break
+            END_IF
+        END_FOR
+
+// if the value is not repeated we add it to our sum variable
+        IF (comp = true) THEN
+            sum = sum + set[i]
+        END_IF
+        i=i+1
+    END_WHILE
+
+
+// repeat the process comparing set2 to set1 instead
+    WHILE (set2[i] < set2.length) DO
+        FOR j FROM 0 TO set1.length-1 STEP 1 DO
+            IF (set2[i] = set1[j]) THEN
+                comp = false
+                break
+            END_IF
+        END_FOR
+
+        IF (comp = true) THEN
+            sum = sum + set[j]
+        END_IF
+        i=i+1
+    END_WHILE
+
+    write(sum)
+END
+

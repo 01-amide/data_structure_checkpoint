@@ -1,0 +1,80 @@
+
+// dot product procedure
+PROCEDURE dot_product(v1, v2 : INTEGER)
+VAR
+    ps : INTEGER := 0  //product sum
+    i : INTEGER := 0    //loop counter
+BEGIN
+    FOR i FROM 0 TO v1.length-1 STEP 1  DO
+        ps = ps + v1[i] * v2[i]
+    END_FOR
+
+END
+
+ALGORITHM orthogonal
+VAR
+    N = INTEGER //number of pairs
+    v1 : ARRAY_OF INTEGER;
+    v2 : ARRAY_OF INTEGER;
+    ps : INTEGER := 0
+    i : INTEGER
+    
+BEGIN
+    write("how many pairs do you want to check?")
+    read(N)
+
+
+    FOR i FROM 1 TO N STEP 1  DO
+        read(v1)
+        read(v2)
+    
+        dot_product(v1, v2) //calling the dotproduct procedure
+
+        //checking if the dot product is orthogonal
+        IF (ps = 0) THEN
+            write(i "is orthogonal")
+        ELSE
+            write(i "is not orthogonal")
+        END_IF
+    END_FOR
+END
+
+
+// modification using function
+FUNCTION dot_product(v1, v2) : INTEGER
+VAR
+    ps : INTEGER := 0
+    i : INTEGER := 0
+BEGIN
+    FOR i FROM 0 TO v1.length-1 STEP 1  DO
+        ps = ps + v1[i] * v2[i] //after multiplying the two values add them to the sum them go again
+
+    END_FOR
+    RETURN ps;
+END
+
+ALGORITHM orthogonal
+VAR
+    v1 : ARRAY_OF INTEGER;
+    v2 : ARRAY_OF INTEGER;
+    ps : INTEGER
+    N = INTEGER
+BEGIN
+    write("how many pairs do you want to check?")
+    read(N)
+
+    
+
+    FOR i FROM 1 TO N STEP 1  DO
+        read(v1)
+        read(v2)
+
+        ps = dot_product(v1, v2)
+
+        IF (ps = 0) THEN
+            write("It is orthogonal")
+        ELSE
+            write("It is not orthogonal")
+        END_IF
+    END_FOR
+END
