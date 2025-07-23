@@ -6,7 +6,7 @@ VAR
     i : INTEGER:=0
     j : INTEGER
     sum: INTEGER := 0
-    comp = true
+    comp = BOOLEAN
 
     
 BEGIN
@@ -14,8 +14,9 @@ BEGIN
     read(set2)
 
     // first a while loop that loops through the values of set1
-    WHILE (set1[i] < set1.length) DO
+    WHILE (i < set1.length) DO
     // a nested loop that checks if the value is repeated in the set2
+        comp = true
         FOR j FROM 0 TO set2.length-1 STEP 1 DO
             IF (set1[i] = set2[j]) THEN
                 comp = false
@@ -25,14 +26,16 @@ BEGIN
 
 // if the value is not repeated we add it to our sum variable
         IF (comp = true) THEN
-            sum = sum + set[i]
+            sum = sum + set1[i]
         END_IF
         i=i+1
     END_WHILE
 
 
 // repeat the process comparing set2 to set1 instead
-    WHILE (set2[i] < set2.length) DO
+    i = 0
+    WHILE (i < set2.length) DO
+    comp = true
         FOR j FROM 0 TO set1.length-1 STEP 1 DO
             IF (set2[i] = set1[j]) THEN
                 comp = false
@@ -41,7 +44,7 @@ BEGIN
         END_FOR
 
         IF (comp = true) THEN
-            sum = sum + set[j]
+            sum = sum + set2[i]
         END_IF
         i=i+1
     END_WHILE
